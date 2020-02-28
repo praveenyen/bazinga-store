@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import API from '../API.js'
 
 class HomePage extends Component {
@@ -7,6 +6,7 @@ class HomePage extends Component {
         super(props);
         this.state = {
             order: {},
+            isUpdated: false,
             formControls: {
                 email: {
                     value: ''
@@ -51,7 +51,16 @@ class HomePage extends Component {
                 email: this.state.formControls.email.value,
                 phone: this.state.formControls.phone.value,
             }
-        )
+        ).then(response => this.setState({isUpdated: true}))
+    }
+    myFunc=()=>{
+        if(this.state.isUpdated){
+            return (
+                <div class="alert alert-success" role="alert">
+                    Customer Data Has Been Updated!
+                </div>
+            )
+        }
     }
     render() {
         return (
@@ -63,6 +72,10 @@ class HomePage extends Component {
                     <div class="card-body">
                         {JSON.stringify(this.state.order.customer)}
                     </div>
+                </div>
+                < br />
+                <div>
+                    {this.myFunc()}
                 </div>
                 < br />
                 <div class="card">

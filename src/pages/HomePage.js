@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import API from '../API.js'
 
 class HomePage extends Component {
